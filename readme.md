@@ -5,9 +5,10 @@ The goal of this project is to create a microsservice that receives a image (pri
 
 ## Example 
 ![Grau loadout](images/en/grau.png)
-```
-Muzzle: Monolithic Suppressor; Barrel: Tempus 26.4" Archangel; Laser: Tac Laser; Underbarrel: Commando Foregrip; Magazine: 50 Round Mags;
-```
+
+The return should be:
+
+`Muzzle: Monolithic Suppressor; Barrel: Tempus 26.4" Archangel; Laser: Tac Laser; Underbarrel: Commando Foregrip; Magazine: 50 Round Mags;`
 
 
 ## Install
