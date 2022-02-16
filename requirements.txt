@@ -2,4 +2,4 @@ pytesseract
 opencv-python
 flask
 flask-cors
-skimage
+scikit-image
