@@ -18,7 +18,7 @@ sudo pacman -S tesseract opencv nodejs python3
 
 #### Debian / Ubuntu based
 ```bash
-sudo apt install tesseract opencv nodejs python3
+sudo apt install tesseract-orc python3 python-opencv nodejs
 ```
 
 #### Fedora / Red hat based
