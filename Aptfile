@@ -1,5 +1,5 @@
 libgl1
-python-opencv
+python3-opencv
 tesseract-ocr
 tesseract-ocr-eng
 tesseract-ocr-por
