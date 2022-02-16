@@ -35,7 +35,7 @@ For windows you'll have to download the binaries on each website, or you can use
 
 ### Python dependencies
 ```bash
-pip install pytesseract opencv-python flask flask-cors pdf2image
+pip install pytesseract opencv-python flask flask-cors
 ```
 
 ## Run
