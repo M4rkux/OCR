@@ -3,6 +3,7 @@ from pytesseract.pytesseract import Output
 import json
 
 MIN_CONF = 10.0
+CONFIG_TESSERACT = '--tessdata-dir tessdata/'
 LANG='eng+por'
 
 GAP_TOP = 40
@@ -42,8 +43,8 @@ def prepareLayout(data, title):
   return result
 
 def postProcess(image): 
-  pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
-  data = pytesseract.image_to_data(image, lang=LANG, output_type=Output.DICT)
+  # pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
+  data = pytesseract.image_to_data(image, lang=LANG, config=CONFIG_TESSERACT, output_type=Output.DICT)
 
   f = open('layouts/titles.json')
   titles = json.loads(f.read())
@@ -67,8 +68,8 @@ def postProcess(image):
 ######################################################## POST PROCESS Debug ########################################################
 
 def postProcessDebug(image):
-  pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
-  data = pytesseract.image_to_data(image, lang=LANG, output_type=Output.DICT)
+  # pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
+  data = pytesseract.image_to_data(image, lang=LANG, config=CONFIG_TESSERACT, output_type=Output.DICT)
 
   result = []
   for i in range(0, len(data['text'])):
