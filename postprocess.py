@@ -18,7 +18,7 @@ def getValues(data, layout):
       if (
           (layout['top'] < data['top'][i] and layout['top'] + GAP_TOP >= data['top'][i]) and
           ((layout['left'] - GAP_INIT_LEFT <= data['left'][i] and layout['left'] + GAP_LEFT >= data['left'][i]))):
-        result += data['text'][i] + ' '
+        result += data['text'][i].capitalize() + ' '
 
   return result.strip()
 
@@ -31,7 +31,7 @@ def prepareLayout(data, title):
         content = dict()
         content['top'] = data['top'][i]
         content['left'] = data['left'][i]
-        content['text'] = data['text'][i]
+        content['text'] = data['text'][i].capitalize()
         if (title in result):
           currentContent = result[title]
           currentTop = currentContent['top']
@@ -43,7 +43,6 @@ def prepareLayout(data, title):
   return result
 
 def postProcess(image): 
-  # pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
   data = pytesseract.image_to_data(image, lang=LANG, config=CONFIG_TESSERACT, output_type=Output.DICT)
 
   f = open('layouts/titles.json')
@@ -68,7 +67,6 @@ def postProcess(image):
 ######################################################## POST PROCESS Debug ########################################################
 
 def postProcessDebug(image):
-  # pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
   data = pytesseract.image_to_data(image, lang=LANG, config=CONFIG_TESSERACT, output_type=Output.DICT)
 
   result = []
