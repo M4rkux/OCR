@@ -3,7 +3,7 @@ from pytesseract.pytesseract import Output
 import json
 
 MIN_CONF = 10.0
-CONFIG_TESSERACT = '--tessdata-dir ../tessdata'
+CONFIG_TESSERACT = '--tessdata-dir /tessdata'
 # LANG='por'
 
 GAP_TOP = 40
