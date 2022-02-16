@@ -2,3 +2,4 @@ pytesseract
 opencv-python
 flask
 flask-cors
+opencv-python-headless
