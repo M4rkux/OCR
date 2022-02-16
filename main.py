@@ -10,12 +10,11 @@ CORS(app)
 def ocr():
 
   file = request.files['image'].read()
-  lang = request.form.get('lang')
   debug = request.form.get('debug')
   image_preprocessed = preProcess(file)
   if (debug):
-    return postProcessDebug(image_preprocessed, lang)
-  return postProcess(image_preprocessed, lang)
+    return postProcessDebug(image_preprocessed)
+  return postProcess(image_preprocessed)
 
 app.run(debug=True)
 
