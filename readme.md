@@ -2,6 +2,14 @@
 
 The goal of this project is to create a microsservice that receives a image (print screen from loadout screen in cod warzone) and return the loadout in a text format, separated by `;`
 
+
+## Example 
+![Grau loadout](images/en/grau.png)
+```
+Muzzle: Monolithic Suppressor; Barrel: Tempus 26.4" Archangel; Laser: Tac Laser; Underbarrel: Commando Foregrip; Magazine: 50 Round Mags;
+```
+
+
 ## Install
 
 ### MacOs
@@ -18,7 +26,7 @@ sudo pacman -S tesseract opencv nodejs python3
 
 #### Debian / Ubuntu based
 ```bash
-sudo apt install tesseract-orc python3 python-opencv nodejs
+sudo apt install tesseract-orc nodejs python3
 ```
 
 #### Fedora / Red hat based
@@ -35,7 +43,7 @@ For windows you'll have to download the binaries on each website, or you can use
 
 ### Python dependencies
 ```bash
-pip install pytesseract opencv-python flask flask-cors
+pip install pytesseract opencv-python flask flask-cors scikit-image
 ```
 
 ## Run
