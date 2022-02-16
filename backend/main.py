@@ -10,20 +10,12 @@ CORS(app)
 def ocr():
 
   file = request.files['image'].read()
+  lang = request.form.get('lang')
+  debug = request.form.get('debug')
   image_preprocessed = preProcess(file)
-  response = postProcess(image_preprocessed)
-
-  return response
-
-@app.route("/debug", methods=['POST'])
-def ocrDebug():
-
-  file = request.files['image'].read()
-  image_preprocessed = preProcess(file)
-  response = postProcessDebug(image_preprocessed)
-
-  return response
-
+  if (debug):
+    return postProcessDebug(image_preprocessed, lang)
+  return postProcess(image_preprocessed, lang)
 
 app.run(debug=True)
 
