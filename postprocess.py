@@ -43,7 +43,7 @@ def prepareLayout(data, title):
   return result
 
 def postProcess(image): 
-  # pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
+  pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
   data = pytesseract.image_to_data(image, lang=LANG, config=CONFIG_TESSERACT, output_type=Output.DICT)
 
   f = open('layouts/titles.json')
@@ -68,7 +68,7 @@ def postProcess(image):
 ######################################################## POST PROCESS Debug ########################################################
 
 def postProcessDebug(image):
-  # pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
+  pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
   data = pytesseract.image_to_data(image, lang=LANG, config=CONFIG_TESSERACT, output_type=Output.DICT)
 
   result = []
