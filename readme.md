@@ -3,6 +3,13 @@
 The goal of this project is to create a microsservice that receives a image (print screen from loadout screen in cod warzone) and return the loadout in a text format, separated by `;`
 
 
+This project is live at https://loadout2text.herokuapp.com
+
+You can test it by sending POST messages with the image that you want to extract the text
+```bash
+curl -X POST https://loadout2text.herokuapp.com -F "image=@images/en/grau.png" | jq
+```
+
 ## Example 
 ![Grau loadout](images/en/grau.png)
 
@@ -61,5 +68,5 @@ You can test the backend separated from the frontend with [cURL](https://curl.se
 
 With the project running, you can run this from the root of the project:
 ```bash
-curl -X POST http://localhost:5000 -F lang=eng -F "image=@images/en/grau.png" | jq
+curl -X POST http://localhost:5000 -F "image=@images/en/grau.png" | jq
 ```
