@@ -7,7 +7,6 @@ CacheControl==0.12.6
 cffi==1.15.0
 chardet==4.0.0
 click==8.0.3
-cloud-init==22.1
 colorama==0.4.4
 conda==4.1.6
 configobj==5.1.0.dev0
