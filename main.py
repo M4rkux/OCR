@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from preprocess import preProcess
 from postprocess import postProcess, postProcessDebug
@@ -14,8 +14,11 @@ def ocr():
   debug = request.form.get('debug')
   image_preprocessed = preProcess(file)
   if (debug):
-    return postProcessDebug(image_preprocessed)
-  return postProcess(image_preprocessed)
+    response = jsonify(postProcessDebug(image_preprocessed))
+  else:
+    response = jsonify(postProcess(image_preprocessed))
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  return response
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

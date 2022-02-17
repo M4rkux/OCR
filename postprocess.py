@@ -81,4 +81,4 @@ def postProcessDebug(image):
       result.append(obj)
 
 
-  return json.dumps(result)
+  return result
