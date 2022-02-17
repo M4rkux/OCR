@@ -70,28 +70,22 @@ export default {
     }
   },
 
-  computed: {
-    file() {
-      if (!document) return null
-      const imagefile = document.querySelector("#file");
-      return imagefile.files[0];
-    }
-  },
-
   methods: {
     onFileChange() {
-      this.url = URL.createObjectURL(this.file);
+      const imagefile = document.querySelector("#file");
+      this.url = URL.createObjectURL(imagefile.files[0]);
     },
     async submitFile() {
       this.submitting = true;
       const formData = new FormData();
 
-      formData.append("image", this.file);
+      const imagefile = document.querySelector("#file");
+      formData.append("image", imagefile.files[0]);
 
 
       try {
-        const { data } = await axios.post('http://localhost:5000', formData)
-        // const { data } = await axios.post('https://loadout2text.herokuapp.com', formData)
+        // const { data } = await axios.post('http://localhost:5000', formData)
+        const { data } = await axios.post('https://loadout2text.herokuapp.com', formData)
         this.output = data.response
       } catch (e) {
         this.output = 'Something wrong happened, please try again.'
@@ -103,8 +97,8 @@ export default {
   async beforeMount() {
     // Call to wakup the server
     try {
-      await axios.get('http://localhost:5000')
-      // await axios.get('https://loadout2text.herokuapp.com')
+      // await axios.get('http://localhost:5000')
+      await axios.get('https://loadout2text.herokuapp.com')
     } catch (e) {
       console.log('The server is awake!')
     }
