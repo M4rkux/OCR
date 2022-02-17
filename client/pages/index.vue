@@ -3,7 +3,7 @@
 
     <div class="mb-3">
       <h1>Upload a screenshot of your loadout to extract the text</h1>
-      <small>The better the quality, the more accurate the result can be</small>
+      <small><em>The better the quality, more accurate the result will be</em></small>
     </div>
 
     <figure class="image preview-image">
@@ -100,10 +100,14 @@ export default {
     }
   },
 
-  beforeMount() {
+  async beforeMount() {
     // Call to wakup the server
-    axios.get('http://localhost:5000')
-    // axios.get('https://loadout2text.herokuapp.com')
+    try {
+      await axios.get('http://localhost:5000')
+      // await axios.get('https://loadout2text.herokuapp.com')
+    } catch (e) {
+      console.log('The server is awake!')
+    }
   }
 
 }
@@ -116,6 +120,10 @@ html {
 
 body {
   min-height: 100%;
+}
+
+em {
+  font-style: italic;
 }
 
 .form {
