@@ -1,9 +1,12 @@
 <template>
-  <div class="p-5">
-
+  <div class="p-4">
     <div class="mb-3">
       <h1>Upload a screenshot of your loadout to extract the text</h1>
-      <small><em>The better the quality, more accurate the result will be</em></small>
+      <p><small>
+        <b>Pro tip:</b> Just hit <span class="code">alt+PrintScreen</span> 
+        on the game and <span class="code">ctrl+v</span> here
+      </small></p>
+      <p><small><em>The better the quality, more accurate the result will be</em></small></p>
     </div>
 
     <figure class="image preview-image">
@@ -47,7 +50,7 @@
         Send
       </button>
     </form>
-    <section class="mt-6">
+    <section class="mt-4">
       <h4>Text extracted:</h4>
       <div class="box">
         {{ output || 'No loadout sent yet' }}
@@ -66,22 +69,22 @@ export default {
     return {
       output: '',
       url: null,
-      submitting: false
+      submitting: false,
+      file: null
     }
   },
 
   methods: {
     onFileChange() {
       const imagefile = document.querySelector("#file");
-      this.url = URL.createObjectURL(imagefile.files[0]);
+      this.file = imagefile.files[0]
+      this.url = URL.createObjectURL(this.file);
     },
     async submitFile() {
       this.submitting = true;
       const formData = new FormData();
 
-      const imagefile = document.querySelector("#file");
-      formData.append("image", imagefile.files[0]);
-
+      formData.append("image", this.file);
 
       try {
         // const { data } = await axios.post('http://localhost:5000', formData)
@@ -91,10 +94,20 @@ export default {
         this.output = 'Something wrong happened, please try again.'
       }
       this.submitting = false;
+    },
+    getImageFromClipboard(items) {
+      const blob = items[0].getAsFile();
+      if(blob.type.match('image.*')) {
+        this.file = blob;
+        this.url = URL.createObjectURL(this.file);
+      }
     }
   },
 
   async beforeMount() {
+    document.onpaste = (event) => {
+      this.getImageFromClipboard(event.clipboardData.items);
+    }
     // Call to wakup the server
     try {
       // await axios.get('http://localhost:5000')
@@ -118,6 +131,12 @@ body {
 
 em {
   font-style: italic;
+}
+
+.code {
+  font-family: monospace;
+  font-weight: 600;
+  padding: 0 3px;
 }
 
 .form {
