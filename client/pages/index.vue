@@ -90,16 +90,22 @@ export default {
 
 
       try {
-
-        const { data } = await axios.post("http://localhost:5000", formData)
-        // const { data } = await axios.post("https://loadout2text.herokuapp.com", formData)
+        const { data } = await axios.post('http://localhost:5000', formData)
+        // const { data } = await axios.post('https://loadout2text.herokuapp.com', formData)
         this.output = data.response
       } catch (e) {
         this.output = 'Something wrong happened, please try again.'
       }
       this.submitting = false;
     }
+  },
+
+  beforeMount() {
+    // Call to wakup the server
+    axios.get('http://localhost:5000')
+    // axios.get('https://loadout2text.herokuapp.com')
   }
+
 }
 </script>
 

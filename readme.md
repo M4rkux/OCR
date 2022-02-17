@@ -3,12 +3,7 @@
 The goal of this project is to create a microsservice that receives a image (print screen from loadout screen in cod warzone) and return the loadout in a text format, separated by `;`
 
 
-This project is live at https://loadout2text.herokuapp.com
-
-You can test it by sending POST messages with the image that you want to extract the text
-```bash
-curl -X POST https://loadout2text.herokuapp.com -F "image=@images/en/grau.png" | jq
-```
+This project is live at https://loadout2text.web.app/
 
 ## Example 
 ![Grau loadout](images/en/grau.png)
@@ -55,6 +50,8 @@ pip install pytesseract opencv-python flask flask-cors scikit-image
 ```
 
 ## Run
+
+### Backend
 ```bash
 python main.py
 ```
@@ -70,3 +67,11 @@ With the project running, you can run this from the root of the project:
 ```bash
 curl -X POST http://localhost:5000 -F "image=@images/en/grau.png" | jq
 ```
+
+### Client
+```bash
+cd client/
+npm run dev
+```
+
+It will run at: http://localhot:3000
