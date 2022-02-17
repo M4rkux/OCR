@@ -1,5 +1,5 @@
 <template>
-  <div class="m-5">
+  <div class="p-5">
 
     <div class="mb-3">
       <h1>Upload a screenshot of your loadout to extract the text</h1>
@@ -14,7 +14,7 @@
       @submit.prevent="submitFile()"
       class="form"
       >
-      <div class="file my-4">
+      <div class="file is-link my-4">
         <label class="file-label">
           <input
             @change="onFileChange()"
@@ -26,12 +26,12 @@
             :disabled="submitting"
             >
           <span class="file-cta">
-            <span class="file-icon">
+            <span class="file-icon text-light">
               <font-awesome-icon
                 :icon="['fas', 'upload']"
               />
             </span>
-            <span class="file-label">
+            <span class="file-label text-light">
               Upload image
             </span>
           </span>
@@ -39,17 +39,12 @@
       </div>
 
       <button 
-        class="button is-primary"
+        class="button is-link"
         type="submit"
+        :class="{'is-loading' : submitting} "
         :disabled="!this.url || submitting"
       >
-        <span v-if="!submitting">Enviar</span>
-
-        <font-awesome-icon
-          v-else
-          :icon="['fas', 'spinner']"
-          pulse
-        />
+        Send
       </button>
     </form>
     <section class="mt-6">
@@ -75,21 +70,33 @@ export default {
     }
   },
 
+  computed: {
+    file() {
+      if (!document) return null
+      const imagefile = document.querySelector("#file");
+      return imagefile.files[0];
+    }
+  },
+
   methods: {
     onFileChange() {
-      const imagefile = document.querySelector("#file");
-      this.url = URL.createObjectURL(imagefile.files[0]);
+      this.url = URL.createObjectURL(this.file);
     },
     async submitFile() {
       this.submitting = true;
       const formData = new FormData();
-      const imagefile = document.querySelector("#file");
 
-      formData.append("image", imagefile.files[0]);
+      formData.append("image", this.file);
 
-      const { data } = await axios.post("http://localhost:5000", formData)
-      // const { data } = await axios.post("https://loadout2text.herokuapp.com", formData)
-      this.output = data.response
+
+      try {
+
+        const { data } = await axios.post("http://localhost:5000", formData)
+        // const { data } = await axios.post("https://loadout2text.herokuapp.com", formData)
+        this.output = data.response
+      } catch (e) {
+        this.output = 'Something wrong happened, please try again.'
+      }
       this.submitting = false;
     }
   }
@@ -97,6 +104,14 @@ export default {
 </script>
 
 <style>
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
 .form {
   display: flex;
   flex-direction: column;

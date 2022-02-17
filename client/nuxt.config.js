@@ -15,6 +15,9 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    bodyAttrs: {
+      class: 'has-background-dark has-text-grey-lighter'
+    }
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -41,7 +44,6 @@ export default {
         {
           set: '@fortawesome/free-solid-svg-icons',
           icons: [
-            'faSpinner',
             'faUpload'
           ]
         }
