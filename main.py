@@ -18,7 +18,7 @@ def ocr():
   else:
     response = jsonify(postProcess(image_preprocessed))
   response.headers.add('Access-Control-Allow-Origin', '*')
-  response.headers.add('Access-Control-Allow-Headers: Content-Type')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
   return response
 
 if __name__ == "__main__":
