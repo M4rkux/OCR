@@ -7,6 +7,14 @@ from postprocess import postProcess, postProcessDebug
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/", methods=['GET'])
+def hello():
+
+  response = jsonify('OK')
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+  return response
+
 @app.route("/", methods=['POST'])
 def ocr():
 
