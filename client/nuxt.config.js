@@ -9,9 +9,10 @@ export default {
       lang: 'en',
     },
     meta: [
+      { name:'google-site-verification', content: 'Gur5_Fhmeeh3APuGPrlpZCDYUmVBSEgpT87L_xtxH90'},
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Extract the text within the screenshot of the loadout on call of duty warzone' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
@@ -53,13 +54,13 @@ export default {
       '@nuxtjs/firebase',
       {
         config: {
-          apiKey: 'AIzaSyA9LynASpAjhW4Oz7k6VpqCCDxh4uOb0p0',
-          authDomain: 'loadout2text.firebaseapp.com',
-          projectId: 'loadout2text',
-          storageBucket: 'loadout2text.appspot.com',
-          messagingSenderId: '893647001991',
-          appId: '1:893647001991:web:ee00951e12bb40f9221b22',
-          measurementId: 'G-ZCEZCHXKN7'
+          apiKey: process.env.FIREBASE_API_KEY,
+          authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+          projectId: process.env.FIREBASE_PROJECT_ID,
+          storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+          messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+          appId: process.env.FIREBASE_APP_ID,
+          measurementId: process.env.FIREBASE_MEASUREMENT_ID
         },
         services: {
           auth: true // Just as example. Can be any other service.
@@ -70,4 +71,15 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  analytics: {
+    collectionEnabled: true // default
+  },
+
+  sitemap: {
+    path: '/sitemap.xml',
+    cacheTime: 1000 * 60 * 60 * 2,
+    trailingSlash: true,
+    gzip: true
+  }
 }

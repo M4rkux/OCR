@@ -113,7 +113,7 @@ export default {
       // await axios.get('http://localhost:5000')
       await axios.get('https://loadout2text.herokuapp.com')
     } catch (e) {
-      console.log('The server is awake!')
+      console.log('The server may be down!')
     }
   }
 
